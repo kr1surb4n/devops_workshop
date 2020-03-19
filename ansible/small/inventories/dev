@@ -1,18 +1,18 @@
-[<<group name>>]
-<<targethosts>>
+[common]
+single
 
 [nginx]
-<< NGINX SERVER >>
+ng1
 
 [mysql]
-<< mysql_server >>
+mysql1
 
 [haproxy]
-<<SERVER NAME>>
+hap1
 
 
 [dev:children]
-<<group name>>
+common
 nginx
 mysql
 haproxy

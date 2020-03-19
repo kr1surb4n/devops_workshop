@@ -93,3 +93,7 @@ https://www.vagrantup.com/docs/provisioning/ansible_common.html#host_vars
 VAGRANT AND ANSIBLE AWESOME SHIT: 
 https://www.vagrantup.com/docs/provisioning/ansible_intro.html
 https://www.vagrantup.com/docs/multi-machine/
+
+
+Configuration lists for Vagrantfile
+https://www.vagrantup.com/docs/vagrantfile/machine_settings.html

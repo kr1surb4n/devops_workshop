@@ -3,3 +3,8 @@
   with_items:
     - sysstat
     - open-vm-tools 
+
+- name: ensure ntpd is at the latest version
+  yum: pkg=ntp state=latest
+  notify:
+  - restart ntpd
