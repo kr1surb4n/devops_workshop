@@ -1,0 +1,18 @@
+[<<group name>>]
+<<targethosts>>
+
+[nginx]
+<< NGINX SERVER >>
+
+[mysql]
+<< mysql_server >>
+
+[haproxy]
+<<SERVER NAME>>
+
+
+[dev:children]
+<<group name>>
+nginx
+mysql
+haproxy

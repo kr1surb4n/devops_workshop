@@ -1,0 +1,5 @@
+sudo apt-get install ruby
+gem install serverspec highline
+
+FROM PLAYBOOK DIRECTORY:
+serverspec-init

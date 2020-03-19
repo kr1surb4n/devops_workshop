@@ -1,0 +1,7 @@
+virtualhosts:
+  test1:
+    server_name: test.stunthamster.com
+    vhost_root: '/usr/share/nginx/test1'
+  test2:
+    server_name: test2.stunthamster.com
+    vhost_root: '/usr/share/nginx/test2'

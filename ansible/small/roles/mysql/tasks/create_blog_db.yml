@@ -1,0 +1,5 @@
+- name: Create MyBlog DB
+  mysql_db: name=myblog state=present
+
+- name: Create MyBlog User
+  mysql_user: name=myblog_user password=agreatpassword priv=myblog.*:ALL state=presentpresent

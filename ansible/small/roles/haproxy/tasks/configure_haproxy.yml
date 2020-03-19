@@ -1,0 +1,3 @@
+- name: Deploy HAProxy configuration
+  template: src=haproxy.cfg dest=/etc/haproxy/haproxy.cfg
+  notify: Restart HAProxy

@@ -1,0 +1,95 @@
+* identity server:
+- flask
+- login creditential (returning token)
+- tokeninfor (pass token, get yes/no)
+- read sqlite db
+
+* haproxy
+* hatop - monitor haproxy
+
+* adding images to private docker registry
+
+sudo docker build -t <username>/gollum:4.0.0 <<docker_registry_name_and_port>>
+docker push <docker_registry_name_and_port>/gollum:4.0.0
+
+# check tag list
+curl -v -X GET <docker_registry_name_and_port>:5000/v2/gollum/tags/list
+
+# pulling images
+docker run -d -t <<docker_registry_name_and_port>>/gollum:4.0.0
+
+# https://docs.docker.com/registry/spec/api/#overview .
+
+
+* vagrant
+
+$ vagrant init hashicorp/bionic64
+$ vagrant up   # also rebuild env
+$ vagrant reload
+
+$ vagrant ssh
+
+$ vagrant destroy
+
+$ vagrant share   <-- share the vagrant outside
+
+$ vagrant suspend
+
+$ vagrant halt
+
+$ vagrant box add hashicorp/bionic64
+
+# IMPORTANT - SHARED FILES
+# By default, Vagrant shares your project directory (remember, that is the one with the Vagrantfile) to the /vagrant directory in your guest machine.
+
+# RUN bootstrap.sh (make that file where Vagrantfile is)
+# Create the following shell script and save it as bootstrap.sh in the same directory as your Vagrantfile:
+
+# Vagrantfile contents:
+Vagrant.configure("2") do |config|
+  config.vm.box = "hashicorp/bionic64"
+  config.vm.provision :shell, path: "bootstrap.sh"                   <---- run bootstrap
+  config.vm.network :forwarded_port, guest: 80, host: 4567
+
+  # Use :ansible or :ansible_local to
+  # select the provisioner of your choice
+  config.vm.provision :ansible do |ansible|
+    ansible.playbook = "playbook.yml"
+
+
+    ansible.host_vars = {
+      "host1" => {"http_port" => 80,
+                  "maxRequestsPerChild" => 808},
+      "host2" => {"http_port" => 303,
+                  "maxRequestsPerChild" => 909}
+    }
+
+    ansible.groups = {
+      "group1" => ["machine1"],
+      "group2" => ["machine2"],
+      "group3" => ["machine[1:2]"],
+      "group4" => ["other_node-[a:d]"], # silly group definition
+      "all_groups:children" => ["group1", "group2"],
+      "group1:vars" => {"variable1" => 9,
+                        "variable2" => "example"}
+    }
+  end
+
+end 
+
+# ansible https://www.vagrantup.com/docs/provisioning/ansible_common.
+
+
+Auto-Generated Inventory
+
+The first and simplest option is to not provide one to Vagrant at all.
+ Vagrant will generate an inventory file encompassing 
+ all of the virtual machines it manages, and use it for provisioning machines.
+
+
+
+https://www.vagrantup.com/docs/provisioning/ansible_common.html#host_vars
+
+VAGRANT AND ANSIBLE AWESOME SHIT: 
+https://www.vagrantup.com/docs/provisioning/ansible_intro.html
+https://www.vagrantup.com/docs/multi-machine/

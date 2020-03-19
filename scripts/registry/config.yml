@@ -1,0 +1,12 @@
+# WHAT TO ADD INTO /CMD/registry/config.yml for docker registry
+http:
+  addr: :5000
+  secret: asecretforlocaldevelopment
+  debug:
+    addr: localhost:5001
+  tls:
+    certificate: /go/src/github.com/docker/distribution/certs/registry.crt
+    key: /go/src/github.com/docker/distribution/certs/registry.key
+
+filesystem:
+  rootdirectory: /var/spool/registry
