@@ -1,0 +1,17 @@
+users:
+  admin:
+    state: present
+    comment: "Administrator User"
+    shell: "/bin/bash"
+    uid: 5110
+    gid: 5110
+    password: "<< PASSWORD >>"
+    sshkey: "<< PUB_KEY >>"
+  testuser:
+    state: present
+    comments: "Example User"
+    shell: "/bin/bash"
+    uid: 510
+    gid: 510
+    password: "<< PASSWORD >>"
+    sshkey: "<< PUB_KEY >>"
